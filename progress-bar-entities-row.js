@@ -96,48 +96,65 @@ class ProgressBarEntitiesRow extends HTMLElement {
       :host {
         display: block;
       }
+      /* Exaktes Layout der HA standard entity-row */
       .row {
         display: flex;
         align-items: center;
-        padding: 8px 16px;
+        flex-direction: row;
+        padding: 0 16px;
         min-height: 52px;
         box-sizing: border-box;
       }
-      .icon {
-        margin-right: 8px;
-        color: var(--state-icon-color, var(--paper-item-icon-color));
+      /* Icon-Bereich: 40px fix, wie ha-state-icon in entity-row */
+      .icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
         flex-shrink: 0;
+        margin-right: 8px;
+        color: var(--paper-item-icon-color, var(--state-icon-color, #44739e));
       }
+      /* Name: nimmt den verfügbaren Platz links */
       .name {
         flex: 1;
-        font-size: 14px;
+        min-width: 0;
+        font-size: var(--paper-font-body1_-_font-size, 14px);
+        font-weight: var(--paper-font-body1_-_font-weight, 400);
+        line-height: var(--paper-font-body1_-_line-height, 20px);
         color: var(--primary-text-color);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        margin-right: 12px;
+      }
+      /* Rechte Seite: Bar + Wert, zusammen so breit wie der State-Bereich */
+      .right {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        gap: 8px;
       }
       .bar-container {
-        flex: 2;
+        width: 100px;
         background: var(--divider-color, #e0e0e0);
-        height: 12px;
-        border-radius: 6px;
+        height: 8px;
+        border-radius: 4px;
         overflow: hidden;
-        margin-right: 12px;
       }
       .bar {
         height: 100%;
         width: ${value}%;
         background: ${barColor};
-        border-radius: 6px;
+        border-radius: 4px;
         transition: width 0.5s ease;
       }
+      /* State-Text: wie .state in standard entity-row */
       .state {
-        font-size: 14px;
-        color: var(--secondary-text-color);
-        white-space: nowrap;
-        min-width: 48px;
+        font-size: var(--paper-font-body1_-_font-size, 14px);
+        color: var(--primary-text-color);
         text-align: right;
+        white-space: nowrap;
+        min-width: 42px;
       }
       /* Card-Modus */
       ha-card {
@@ -181,12 +198,16 @@ class ProgressBarEntitiesRow extends HTMLElement {
     const rowTemplate = `
       <style>${styles}</style>
       <div class="row" title="${tooltip}">
-        <ha-icon class="icon" icon="${icon}"></ha-icon>
-        <span class="name">${name}</span>
-        <div class="bar-container">
-          <div class="bar"></div>
+        <div class="icon-wrapper">
+          <ha-icon icon="${icon}"></ha-icon>
         </div>
-        <span class="state">${displayValue}</span>
+        <span class="name">${name}</span>
+        <div class="right">
+          <div class="bar-container">
+            <div class="bar"></div>
+          </div>
+          <span class="state">${displayValue}</span>
+        </div>
       </div>
     `;
 
