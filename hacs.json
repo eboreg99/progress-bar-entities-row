@@ -1,6 +1,6 @@
 {
-  "name": "Battery Bar Card",
-  "description": "A customizable card or entity row to display a progress bar, supporting dynamic min/max values via entity or config.",
+  "name": "Progress Bar Entities Row",
+  "description": "A customizable entity row to display a progress bar, supporting dynamic min/max values as entity or constant.",
   "version": "0.1.0",
   "type": "lovelace",
   "content_in_root": true
