@@ -16,13 +16,13 @@ A customizable card or entity row to display a progress bar, supporting dynamic 
 ## ⚙️ Installation
 
 1. Add this repo as a custom repository in HACS:
-   - URL: `https://github.com/eboreg99/battery-bar-card`
+   - URL: `https://github.com/eboreg99/progress-bar-entity-row`
    - Type: Lovelace
 
 2. Install the card via HACS.
 3. Add the resource manually if needed:
    ```yaml
-   url: /hacsfiles/battery-bar-card/battery-bar-card.js
+   url: /hacsfiles/progress-bar-entity-row/progress-bar-entity-row.js
    type: module
    ```
 
@@ -30,7 +30,7 @@ A customizable card or entity row to display a progress bar, supporting dynamic 
 
 Dynamic min/max entity row:
 ```yaml
-type: custom:battery-bar-card
+type: custom:progress-bar-entity-row
 entity: sensor.battery_level
 mode: row
 min_entity: sensor.batttery_min
@@ -38,7 +38,7 @@ max_entity: sensor.battery_max
 ```
 Static min/max card:
 ```yaml
-type: custom:battery-bar-card
+type: custom:progress-bar-entity-row
 entity: sensor.battery_level
 mode: auto
 min_value: 20
