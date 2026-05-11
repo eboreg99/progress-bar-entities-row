@@ -1,4 +1,4 @@
-# Dynamic Progress Bar for Home Assistant
+# Progress Bar Entity Row for Home Assistant
 
 **⚠️ Not ready: You should not use this component yet.**
 
