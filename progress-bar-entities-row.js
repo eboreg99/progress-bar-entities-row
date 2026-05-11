@@ -1,5 +1,5 @@
 // Dein JavaScript-Code kommt hier rein
-class BatteryBarCard extends HTMLElement {
+class ProgressBarEntitiesRow extends HTMLElement {
   setConfig(config) {
     if (!config.entity) {
       throw new Error("Entity ist erforderlich");
