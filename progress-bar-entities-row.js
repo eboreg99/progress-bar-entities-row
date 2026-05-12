@@ -96,7 +96,7 @@ class ProgressBarEntitiesRow extends HTMLElement {
       :host {
         display: block;
       }
-      /* Exaktes Layout der HA standard entity-row */
+      /* 1:1 nach hui-generic-entity-row */
       .row {
         display: flex;
         align-items: center;
@@ -105,20 +105,19 @@ class ProgressBarEntitiesRow extends HTMLElement {
         min-height: 52px;
         box-sizing: border-box;
       }
-      /* Icon-Bereich: 40px fix, wie ha-state-icon in entity-row */
-      .icon-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        flex-shrink: 0;
+      /* state-badge ist 40px, margin-right: 8px — exakt wie in HA */
+      state-badge {
         margin-right: 8px;
-        color: var(--paper-item-icon-color, var(--state-icon-color, #44739e));
+        flex-shrink: 0;
+        color: var(--paper-item-icon-color, #44739e);
       }
-      /* Name: nimmt den verfügbaren Platz links */
-      .name {
+      /* .info wie in hui-generic-entity-row */
+      .info {
         flex: 1;
         min-width: 0;
+        cursor: default;
+      }
+      .info.text-content {
         font-size: var(--paper-font-body1_-_font-size, 14px);
         font-weight: var(--paper-font-body1_-_font-weight, 400);
         line-height: var(--paper-font-body1_-_line-height, 20px);
@@ -127,8 +126,8 @@ class ProgressBarEntitiesRow extends HTMLElement {
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      /* Rechte Seite: Bar + Wert, zusammen so breit wie der State-Bereich */
-      .right {
+      /* Rechte Seite: Bar + State nebeneinander */
+      .value {
         display: flex;
         align-items: center;
         flex-shrink: 0;
@@ -148,7 +147,7 @@ class ProgressBarEntitiesRow extends HTMLElement {
         border-radius: 4px;
         transition: width 0.5s ease;
       }
-      /* State-Text: wie .state in standard entity-row */
+      /* .state wie in hui-generic-entity-row */
       .state {
         font-size: var(--paper-font-body1_-_font-size, 14px);
         color: var(--primary-text-color);
@@ -198,11 +197,9 @@ class ProgressBarEntitiesRow extends HTMLElement {
     const rowTemplate = `
       <style>${styles}</style>
       <div class="row" title="${tooltip}">
-        <div class="icon-wrapper">
-          <ha-icon icon="${icon}"></ha-icon>
-        </div>
-        <span class="name">${name}</span>
-        <div class="right">
+        <state-badge icon="${icon}"></state-badge>
+        <div class="info text-content">${name}</div>
+        <div class="value">
           <div class="bar-container">
             <div class="bar"></div>
           </div>
